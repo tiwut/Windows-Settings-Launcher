@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Settings Launcher - Info</title>
+    <script data-goatcounter="https://tiwut.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script src="https://tiwut.de/cookie.notice.js"></script>
+    <script src="https://tiwut.de/Script/enforce_https.js" defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e; /* Dark background color */
+            color: #ffffff; /* Light text color */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #2d2d2d; /* Slightly lighter inner container */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2 {
+            color: #0a84ff; /* Accent blue color */
+            border-bottom: 2px solid #0a84ff;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .code-block {
+            background-color: #3d3d3d;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            color: #f0f0f0;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        .key-feature {
+            background-color: #3a3a3a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 3px solid #0a84ff;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #444444;
+            color: #aaaaaa;
+            font-size: 0.9em;
+        }
+        .footer a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Windows Settings Launcher (Python/Tkinter)</h1>
+
+    <p>The **Windows Settings Launcher** is a utility application built with Python and the Tkinter library, designed to provide quick and easy access to a comprehensive list of Windows settings, utilities, and Control Panel applets using their respective command-line executables (<code>.msc</code>, <code>.cpl</code>, <code>.exe</code>, and <code>ms-settings</code> URIs).</p>
+
+    <h2>✨ Key Features</h2>
+    <ul>
+        <li class="key-feature"><strong>Extensive Settings List:</strong> Access over 40 different system tools, network settings, security options, and classic Control Panel items.</li>
+        <li class="key-feature"><strong>Dark Mode Interface:</strong> Features a modern, accessible dark mode theme implemented with Tkinter's <code>ttk.Style</code>.</li>
+        <li class="key-feature"><strong>Real-time Search:</strong> Easily find the desired setting using a responsive search bar.</li>
+        <li class="key-feature"><strong>Quick Launch:</strong> Launch settings via double-click, Enter key, or a dedicated "Launch Setting" button.</li>
+        <li class="key-feature"><strong>Windows-Native Launch:</strong> Uses <code>os.startfile()</code> and <code>subprocess.run()</code> to execute Windows-specific commands efficiently.</li>
+    </ul>
+
+    <h2>🔧 How It Works</h2>
+    <p>The application relies on a comprehensive Python dictionary named <code>SETTINGS_COMMANDS</code> that maps user-friendly setting names (e.g., "Device Manager") to their corresponding Windows commands (e.g., <code>devmgmt.msc</code>, <code>ms-settings:display</code>). When a user selects an item and triggers the launch, the associated command is executed by the operating system.</p>
+
+    <div class="code-block">
+        <p><strong>Example Commands:</strong></p>
+        <pre>"Device Manager": "devmgmt.msc",</pre>
+        <pre>"Display Settings": "ms-settings:display",</pre>
+        <pre>"Programs and Features (Classic)": "appwiz.cpl"</pre>
+    </div>
+
+    <h2>🖥️ Prerequisites</h2>
+    <p>To run this application, you need:</p>
+    <ul>
+        <li><strong>Operating System:</strong> Microsoft Windows (This script is specifically designed for Windows and will not function on other operating systems).</li>
+        <li><strong>Programming Language:</strong> Python 3.x.</li>
+        <li><strong>Libraries:</strong> Tkinter (usually included with standard Python installations).</li>
+    </ul>
+
+    <h2>📜 Python Code Snippet (Main Class Structure)</h2>
+    <p>The main structure is based on a Tkinter <code>tk.Tk</code> subclass, implementing dark mode styling and the core filtering logic:</p>
+    <div class="code-block">
+<pre>
+class WindowsSettingsApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        # ... styling setup ...
+        self.create_widgets()
+        self.filter_list() 
+
+    def open_selected_setting(self, event=None):
+        # ... logic to get selected command ...
+        try:
+            os.startfile(command) # Tries to launch the setting
+        except FileNotFoundError:
+            # Fallback if os.startfile fails
+            subprocess.run(command, shell=True, check=False) 
+        # ... error handling ...
+</pre>
+    </div>
+
+    <div class="footer">
+        <a href="https://tiwut.de/cookie-banner-information.html" style="color: #a0a0a0; text-decoration: none; font-size: 0.8rem;">Legal Notice</a> © 2025 Tiwut
+    </div>
+</div>
+
+</body>
+</html>
